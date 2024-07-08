@@ -43,8 +43,8 @@ def index():
                     "test_type": test_type,
                     "variables": var.split(',')
                 }
-                response = requests.post(url, json=data)
-                statistical = response
+                statistical = requests.post(url, json=data).json()
+                print(statistical)
             except KeyError:
                 statistical_error = 'Not Found.'
 

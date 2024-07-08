@@ -158,11 +158,11 @@
                 <label for="test-type">Test Type</label>
                 <select id="test-type" name="test-type">
                     <option value="scatter">Scatter</option>
-                    <option value="bar">Bar</option>
+                    <option value="bar" selected>Bar</option>
                     <option value="histogram">Histogram</option>
                 </select>
                 <label for="var1">First Variable</label>
-                <input type="text" id="var1" name="var1">
+                <input type="text" id="var1" name="var1" value="Game">
 
                 <label for="var2">Second Variable</label>
                 <input type="text" id="var2" name="var2">
@@ -209,17 +209,18 @@
             <input type="text" id="variables" name="statistical-var" value="Hours,GAD_T">
             <button type="submit">Submit</button>
         </form>
-            {% if statistical %}   
         <div class="output">
-            <p><strong>Response:</strong></p>
-            <pre>
-                    {{ statistical['t_statistic'] }}
+            {% if statistical %}   
+                <p><strong>Response:</strong></p>
+                    {% for key, value in statistical.items() %}
+                        <p><strong>{{key}}: </strong>{{value}}</p>
+                    {% endfor %}
             {% elif statistical_error %}
-                    <p style="color: red;">{{ statistical_error }}</p>
-            </pre>
-        </div>
+                <p style="color: red;">{{ statistical_error }}</p>
             {% endif %}
+        </div>  
     </div>
+
 
     <div class="api-section" id="preprocessing-steps">
         <h2>Preprocessing Steps</h2>
